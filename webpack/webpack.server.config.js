@@ -2,17 +2,17 @@ module.exports = {
   entry: './source/server.js',
   output: {
     filename: 'index.js',
-    path: './built/server'
+    path: './built/server',
   },
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json',
       },
       {
-        test: /\.json$/,
-        loader: 'babel',
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
         exclude: /(node_modules)/,
         query: {
           presets: ['latest-minimal', 'react']

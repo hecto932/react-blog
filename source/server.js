@@ -1,16 +1,32 @@
-import http from 'http'
-import React from 'react'
+import http from 'http';
+import React from 'react';
 import { renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom'
 
-function requestHandler(req, res) {
+import Pages from './pages/containers/Page.jsx'
+
+function requestHandler(request, response){
+
+  const context = {}
+
   const html = renderToString(
-    React.DOM.h1(null, 'hola')
+    <StaticRouter location={request.url} context={context}>
+      <Pages />
+    </StaticRouter>
   )
 
-  res.write(html)
-  res.end()
+  response.setHeader('Content-Type', 'text/html');
+
+  if (context.url) {
+    response.writeHead(301, {
+      Location: context.url
+    });
+  }
+
+  response.write(html);
+  response.end();
 }
 
-const server = http.createServer(requestHandler)
+const server = http.createServer(requestHandler);
 
-server.listen(3000)
+server.listen(3000);
