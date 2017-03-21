@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Layout(props) {
-  return (
+  return(
     <html>
       <head>
         <meta charSet="utf-8" />
@@ -10,11 +10,11 @@ function Layout(props) {
       <body>
         <div
           id="render-target"
-          dangerouslySetInnerHTML={{
+          dangerouslySetInnetHTML={{
             __html: props.content,
           }}
         />
-        <script src="http://localhost:3000/app.js"></script>
+        <script src="http://localhost:3001/app.js" />
       </body>
     </html>
   )

@@ -9715,11 +9715,11 @@ function Layout(props) {
       null,
       _react2.default.createElement("div", {
         id: "render-target",
-        dangerouslySetInnerHTML: {
+        dangerouslySetInnetHTML: {
           __html: props.content
         }
       }),
-      _react2.default.createElement("script", { src: "http://localhost:3000/app.js" })
+      _react2.default.createElement("script", { src: "http://localhost:3001/app.js" })
     )
   );
 }
