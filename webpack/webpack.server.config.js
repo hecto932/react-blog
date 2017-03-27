@@ -1,3 +1,5 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 module.exports = {
   entry: './source/server.js',
   output: {
@@ -5,7 +7,7 @@ module.exports = {
     path: './built/server',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.json$/,
         loader: 'json-loader',
@@ -17,8 +19,19 @@ module.exports = {
         query: {
           presets: ['latest-minimal', 'react']
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({ 
+          fallback: 'style-loader', 
+          use: 'css-loader'
+        })
       }
     ]
   },
   target: 'node',
+  plugins: [
+    new ExtractTextPlugin('../statics/styles.css'),
+  ]
 }
