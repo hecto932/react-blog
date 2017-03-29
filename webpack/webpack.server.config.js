@@ -1,7 +1,7 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './source/server.js',
+  entry: './source/server.jsx',
   output: {
     filename: 'index.js',
     path: './built/server',
@@ -9,29 +9,41 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        enforce: 'pre',
+        use: 'eslint-loader',
+        exclude: /(node_modules)/,
+      },
+      {
         test: /\.json$/,
-        loader: 'json-loader',
+        use: 'json-loader',
       },
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
         exclude: /(node_modules)/,
+        loader: 'babel-loader',
         query: {
-          presets: ['latest-minimal', 'react']
-        }
+          presets: ['latest-minimal', 'react'],
+        },
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({ 
-          fallback: 'style-loader', 
-          use: 'css-loader'
-        })
-      }
-    ]
+        exclude: /(node_modules)/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        }),
+      },
+    ],
   },
   target: 'node',
+  resolve: {
+    extensions: ['.js', '.jsx', '.css'],
+  },
   plugins: [
-    new ExtractTextPlugin('../statics/styles.css'),
-  ]
-}
+    new ExtractTextPlugin({
+      filename: '../statics/styles.css',
+      ignoreOrder: true,
+    }),
+  ],
+};

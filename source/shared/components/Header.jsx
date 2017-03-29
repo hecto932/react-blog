@@ -1,14 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import styles from './Header.css'
-
-console.log(styles)
+import styles from './Header.css';
 
 function Header() {
   return (
-    <header className="header">
-      <h1 className={styles.title}>
+    <header className={styles.header}>
+      <h1 className="title">
         Mi primera app con React
       </h1>
 
@@ -20,13 +18,13 @@ function Header() {
           className="link"
           href="https://platzi.com"
           target="_blank"
-
+          rel="noopener noreferrer"
         >
           Platzi
         </a>
       </nav>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

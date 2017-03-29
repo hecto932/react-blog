@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import {
   Route,
   Switch,
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import Home from './Home.jsx'
-import Post from './Post.jsx'
-import Profile from './Profile.jsx'
-import Error404 from './Error404.jsx'
+import Home from './Home';
+import Post from './Post';
+import Profile from './Profile';
+import Error404 from './Error404';
 
 function Pages() {
   return (
@@ -35,7 +35,7 @@ function Pages() {
         <Route component={Error404} />
       </Switch>
     </main>
-  )
+  );
 }
 
-export default Pages
+export default Pages;
