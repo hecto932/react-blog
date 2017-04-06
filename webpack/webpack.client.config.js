@@ -1,10 +1,11 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path')
 
 module.exports = {
   entry: './source/client.jsx',
   output: {
     filename: 'app.js',
-    path: './built/statics',
+    path: path.join(__dirname, '../built/statics'),
   },
   module: {
     rules: [
@@ -32,7 +33,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader',
+          use: 'css-loader?modules',
         }),
       },
     ],

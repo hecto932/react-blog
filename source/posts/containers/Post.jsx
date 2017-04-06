@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import api from '../../api';
 
-// import styles from './Post';
+import styles from './Post.css';
 
 class Post extends Component {
   constructor(props) {
@@ -39,21 +39,21 @@ class Post extends Component {
 
   render() {
     return (
-      <article id={`post-${this.props.id}`} className="post">
-        <h2 className="title">
+      <article id={`post-${this.props.id}`} className={styles.post}>
+        <h2 className={styles.title}>
           <Link to={`/post/${this.props.id}`}>
             {this.props.title}
           </Link>
         </h2>
-        <p className="body">
+        <p className={styles.body}>
           {this.props.body}
         </p>
         {!this.state.loading && (
-          <div className="meta">
-            <Link to={`/user/${this.state.user.id}`} className="user">
+          <div className={styles.meta}>
+            <Link to={`/user/${this.state.user.id}`} className={styles.user}>
               {this.state.user.name}
             </Link>
-            <span className="comments">
+            <span className={styles.comments}>
               hay {this.state.comments.length} comentarios
             </span>
           </div>
@@ -63,17 +63,26 @@ class Post extends Component {
   }
 }
 
+Post.defaultProps = {
+  id: null,
+  userId: null,
+  title: null,
+  body: null,
+  comments: null,
+  user: null,
+};
+
 Post.propTypes = {
-  id: PropTypes.number.isRequired,
-  userId: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  userId: PropTypes.number,
+  title: PropTypes.string,
+  body: PropTypes.string,
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+    name: PropTypes.string,
+  }),
   comments: PropTypes.arrayOf(
-    PropTypes.object.isRequired,
-  ).isRequired,
+    PropTypes.object,
+  ),
 };
 
 export default Post;

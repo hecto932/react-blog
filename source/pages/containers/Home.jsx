@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 
 import Post from '../../posts/containers/Post';
 import Loading from '../../shared/components/Loading';
-import Header from '../../shared/components/Header';
 
 import api from '../../api';
 
-// import styles from './Page.css';
+import styles from './Page.css';
 
 class Home extends Component {
 
@@ -70,10 +69,9 @@ class Home extends Component {
 
   render() {
     return (
-      <section name="Home" className="section">
-        <Header />
+      <section name="Home" className={styles.section}>
 
-        <section className="list">
+        <section className={styles.list}>
           {this.state.loading && (
             <Loading />
           )}
