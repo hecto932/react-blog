@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import Post from '../../posts/containers/Post';
 import Loading from '../../shared/components/Loading';
+import Title from '../../shared/components/Title';
 
 import api from '../../api';
 
@@ -70,7 +72,9 @@ class Home extends Component {
   render() {
     return (
       <section name="Home" className={styles.section}>
-
+        <Title>
+          <FormattedMessage id="title.home" />
+        </Title>
         <section className={styles.list}>
           {this.state.loading && (
             <Loading />
